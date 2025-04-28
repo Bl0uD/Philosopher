@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 02:07:13 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/04/28 17:14:35 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:51:21 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static bool	philo_died(t_philo *philo)
 
 void	*monitor_dinner(void *data)
 {
-	int	i;
+	int		i;
 	t_table	*table;
 
 	table = (t_table *)data;

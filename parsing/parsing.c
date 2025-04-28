@@ -6,27 +6,27 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 22:14:31 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/04/28 17:10:37 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:51:59 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosopher.h"
 
-static inline bool is_digit(char c)
+static inline bool	is_digit(char c)
 {
 	return (c >= '0' && c <= '9');
 }
 
-static inline bool is_space(char c)
+static inline bool	is_space(char c)
 {
-	return((c >= 9 && c <= 13) || c == 32);
+	return ((c >= 9 && c <= 13) || c == 32);
 }
 
 static const char	*valid_input(const char *str)
 {
 	int			len;
 	const char	*number;
-	
+
 	len = 0;
 	while (is_space(*str))
 		++str;
@@ -70,5 +70,5 @@ void	parsing(t_table *table, char **av)
 	if (av[5])
 		table->nbr_limit_meals = ft_atol(av[5]);
 	else
-		table->nbr_limit_meals = -1;	
+		table->nbr_limit_meals = -1;
 }

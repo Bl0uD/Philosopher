@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 22:35:27 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/04/28 17:18:15 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:44:05 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	assign_forks(t_philo *philo, t_fork *forks, int philo_position)
 {
 	int	philo_nbr;
-	
+
 	philo_nbr = philo->table->philo_nbr;
 	if (philo->id % 2 == 0)
 	{
@@ -45,7 +45,6 @@ static void	philo_init(t_table *table)
 		assign_forks(philo, table->forks, i);
 		safe_mutex_handle(&philo->philo_mutex, INIT);
 	}
-	
 }
 
 void	data_init(t_table *table)

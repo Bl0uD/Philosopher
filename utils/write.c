@@ -6,13 +6,14 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 00:40:50 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/04/28 16:59:49 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:49:36 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosopher.h"
 
-static void	write_status_debug(t_philo_status status, t_philo *philo, long elapsed)
+static void	write_status_debug(t_philo_status status,
+	t_philo *philo, long elapsed)
 {
 	if (status == TAKE_FIRST_FORK && !simulation_finished(philo->table))
 		printf(W"%6ld"RST" %d has taken the 1° fork"

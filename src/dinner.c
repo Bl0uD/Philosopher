@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 23:52:12 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/04/28 17:21:10 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:46:26 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	thinking(t_philo *philo, bool pre_simulation)
 	t_think = t_eat * 2 - t_sleep;
 	if (t_think < 0)
 		t_think = 0;
-	precise_usleep(t_think * 0.42, philo->table);	
+	precise_usleep(t_think * 0.42, philo->table);
 }
 
 static void	eat(t_philo *philo)
@@ -44,13 +44,13 @@ static void	eat(t_philo *philo)
 		&& philo->meals_counter == philo->table->nbr_limit_meals)
 		set_bool(&philo->philo_mutex, &philo->full, true);
 	safe_mutex_handle(&philo->first_fork->fork, UNLOCK);
-	safe_mutex_handle(&philo->second_fork->fork, UNLOCK);	
+	safe_mutex_handle(&philo->second_fork->fork, UNLOCK);
 }
 
 void	*lone_philo(void *arg)
 {
-	t_philo *philo;
-	
+	t_philo	*philo;
+
 	philo = (t_philo *)arg;
 	wait_all_threads(philo->table);
 	set_long(&philo->philo_mutex, &philo->last_meal_time, gettime(MILLISECOND));
@@ -59,12 +59,12 @@ void	*lone_philo(void *arg)
 	write_status(TAKE_FIRST_FORK, philo, DEBUG_MODE);
 	while (!simulation_finished(philo->table))
 		usleep(200);
-	return(NULL);
+	return (NULL);
 }
 
 void	*dinner_simulation(void *data)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)data;
 	wait_all_threads(philo->table);
@@ -75,7 +75,7 @@ void	*dinner_simulation(void *data)
 	while (!simulation_finished(philo->table))
 	{
 		if (philo->full)
-			break;
+			break ;
 		eat(philo);
 		write_status(SLEEPING, philo, DEBUG_MODE);
 		precise_usleep(philo->table->time_to_sleep, philo->table);

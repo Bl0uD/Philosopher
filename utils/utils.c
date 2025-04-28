@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 21:33:57 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/04/28 17:02:53 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:50:29 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	error_exit(const char *error)
 long	gettime(t_time_code time_code)
 {
 	struct timeval	tv;
-	
+
 	if (gettimeofday(&tv, NULL))
 		error_exit("Gettimeofday failed\n");
 	if (SECOND == time_code)
@@ -40,7 +40,7 @@ void	precise_usleep(long usec, t_table *table)
 	long	start;
 	long	elapsed;
 	long	rem;
-	
+
 	start = gettime(MICROSECOND);
 	while (gettime(MICROSECOND) - start < usec)
 	{
@@ -56,12 +56,11 @@ void	precise_usleep(long usec, t_table *table)
 				;
 		}
 	}
-	
 }
 
 void	clean(t_table *table)
 {
-	t_philo *philo;
+	t_philo	*philo;
 	int		i;
 
 	i = -1;

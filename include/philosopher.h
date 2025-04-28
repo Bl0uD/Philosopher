@@ -6,21 +6,21 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:01:48 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/04/28 17:04:14 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:48:42 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHER_H
 # define PHILOSOPHER_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdbool.h>
-#include <pthread.h>
-#include <sys/time.h>
-#include <limits.h>
-#include <errno.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdbool.h>
+# include <pthread.h>
+# include <sys/time.h>
+# include <limits.h>
+# include <errno.h>
 
 # define RST	"\033[0m"
 # define RED	"\033[1;31m"
@@ -31,9 +31,9 @@
 # define C		"\033[1;36m"
 # define W		"\033[1;37m"
 
-#define DEBUG_MODE 0
+# define DEBUG_MODE 0
 
-typedef enum	e_status
+typedef enum e_status
 {
 	EATING,
 	SLEEPING,
@@ -43,7 +43,7 @@ typedef enum	e_status
 	DIED,
 }				t_philo_status;
 
-typedef	enum	e_opcode
+typedef enum e_opcode
 {
 	LOCK,
 	UNLOCK,
@@ -54,7 +54,7 @@ typedef	enum	e_opcode
 	DETACH,
 }				t_opcode;
 
-typedef	enum	e_time_code
+typedef enum e_time_code
 {
 	SECOND,
 	MILLISECOND,
@@ -65,14 +65,13 @@ typedef pthread_mutex_t	t_mtx;
 
 typedef struct s_table	t_table;
 
-typedef struct	s_fork
+typedef struct s_fork
 {
 	int		fork_id;
 	t_mtx	fork;
-	
 }				t_fork;
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	bool		full;
 	int			id;
@@ -115,7 +114,7 @@ void	parsing(t_table *table, char **av);
 //safe_functions
 void	*safe_malloc(size_t bytes);
 void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
-		void *data, t_opcode opcode);
+			void *data, t_opcode opcode);
 void	safe_mutex_handle(t_mtx *mutex, t_opcode opcode);
 
 //init

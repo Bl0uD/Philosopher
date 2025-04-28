@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 00:05:23 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/04/28 17:12:14 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:49:57 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	set_bool(t_mtx *mutex, bool *dest, bool value)
 bool	get_bool(t_mtx *mutex, bool *value)
 {
 	bool	res;
-	
+
 	safe_mutex_handle(mutex, LOCK);
 	res = *value;
 	safe_mutex_handle(mutex, UNLOCK);
@@ -39,7 +39,7 @@ void	set_long(t_mtx *mutex, long *dest, long value)
 long	get_long(t_mtx *mutex, long *value)
 {
 	long	res;
-	
+
 	safe_mutex_handle(mutex, LOCK);
 	res = *value;
 	safe_mutex_handle(mutex, UNLOCK);
