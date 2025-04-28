@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 22:14:31 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/04/28 03:31:31 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:10:37 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ static const char	*valid_input(const char *str)
 	if (*str == '+')
 		++str;
 	else if (*str == '-')
-		error_exit("Only positive values !");
+		error_exit("Only positive values !\n");
 	if (!is_digit(*str))
-		error_exit("The input is a not correct digit");
+		error_exit("Only digits argument are accepted !\n");
 	number = str;
-	while (is_digit(*str))
-		++len;
+	while (is_digit(*str++))
+		len++;
 	if (len > 10)
-		error_exit("The value is too big, INT_MAX is the limit");
+		error_exit("Only number under the INT_MAX value is accepted !\n");
 	return (number);
 }
 
@@ -53,7 +53,7 @@ static long	ft_atol(const char *str)
 	while (is_digit(*str))
 		num = (num * 10) + (*str++ - '0');
 	if (num > INT_MAX)
-		error_exit("The value is too big, INT_MAX is the limit");
+		error_exit("Only number under the INT_MAX value is accepted !\n");
 	return (num);
 }
 

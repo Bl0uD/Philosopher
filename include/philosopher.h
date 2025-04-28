@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:01:48 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/04/28 03:12:21 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:04:14 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 #include <pthread.h>
 #include <sys/time.h>
 #include <limits.h>
-#include <err.h>
 #include <errno.h>
 
 # define RST	"\033[0m"
@@ -58,7 +57,7 @@ typedef	enum	e_opcode
 typedef	enum	e_time_code
 {
 	SECOND,
-	MILISECOND,
+	MILLISECOND,
 	MICROSECOND,
 }				t_time_code;
 
@@ -128,7 +127,7 @@ void	thinking(t_philo *philo, bool pre_simulation);
 
 //getters and setter
 bool	simulation_finished(t_table *table);
-long	get_bool(t_mtx *mutex, bool *value);
+bool	get_bool(t_mtx *mutex, bool *value);
 long	get_long(t_mtx *mutex, long *value);
 void	set_bool(t_mtx *mutex, bool *dest, bool value);
 void	set_long(t_mtx *mutex, long *dest, long value);

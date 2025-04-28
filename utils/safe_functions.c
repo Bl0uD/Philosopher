@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 22:38:19 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/04/28 03:13:04 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:30:59 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*safe_malloc(size_t bytes)
 
 	res = malloc(bytes);
 	if (!res)
-		error_exit("Error whit the malloc");
+		error_exit("Error whit the malloc\n");
 	return (res);
 }
 
@@ -26,22 +26,21 @@ static void	handle_mutex_error(int status, t_opcode opcode)
 {
 	if (status == 0)
 		return ;
-	if (status == EINVAL && (opcode == LOCK || opcode == UNLOCK
+	else if (EINVAL == status && (opcode == LOCK || opcode == UNLOCK
 			|| opcode == DESTROY))
-		error_exit("The value specified by mutex is invalid.");
-	else if (status == EINVAL && opcode == INIT)
-		error_exit("The value specified by attr is invalid.");
-	else if (status == EDEADLK)
-		error_exit("A deadlock would occur if the"
-			"thread blocked waiting for mutex.");
-	else if (status == EPERM)
-		error_exit("The current thread does not hold"
-			"a lock on mutex.");
-	else if (status == ENOMEM)
-		error_exit("The process cannot allocate enough"
-			"memory to create another mutex.");
-	else if (status == EBUSY)
-		error_exit("Mutex is locked.");
+		error_exit("The value specified by mutex is invalid\n");
+	else if (EINVAL == status && (opcode == INIT))
+		error_exit("The value specified by attr is invalid\n");
+	else if (EDEADLK == status)
+		error_exit("A dead lock would occur"
+			" if the thread blocked waiting for mutex\n");
+	else if (EPERM == status)
+		error_exit("The current thread does not hold a lock on mutex\n");
+	else if (ENOMEM == status)
+		error_exit("The process cannot allocate enough memory to create"
+			" another mutex\n");
+	else if (EBUSY == status)
+		error_exit("Mutex is locked\n");
 }
 
 void	safe_mutex_handle(t_mtx *mutex, t_opcode opcode)
@@ -55,27 +54,28 @@ void	safe_mutex_handle(t_mtx *mutex, t_opcode opcode)
 	else if (opcode == DESTROY)
 		handle_mutex_error(pthread_mutex_destroy(mutex), opcode);
 	else
-		error_exit("Wrong opcode for mutex handle");
+		error_exit("wrong opcode for the mutex handle"
+			" use <LOCK UNLOCK INIT DESTROY>\n");
 }
 
 static void	handle_thread_error(int status, t_opcode opcode)
 {
 	if (status == 0)
 		return ;
-	if (status == EAGAIN)
-		error_exit("No resources to create another thread.");
-	else if (status == EPERM)
-		error_exit("The caller does not have appropriate permission.");
-	else if (status == EINVAL && opcode == CREATE)
-		error_exit("The value specified by attr is invalid.");
-	else if (status == EINVAL && (opcode == JOIN || DETACH == opcode))
-		error_exit("The value specified by thread is not joinable.");
-	else if (status == ESRCH)
-		error_exit("No thread could be found corresponding to that"
-			"specified by the given thread ID, thread.");
-	else if (status == EDEADLK)
-		error_exit("A deadlock was detected or the value of"
-			"thread specifies the calling thread.");
+	if (EAGAIN == status)
+		error_exit("Insufficient resources to create another thread\n");
+	else if (EPERM == status)
+		error_exit("The caller does not have appropriate perimission\n");
+	else if (EINVAL == status && CREATE == opcode)
+		error_exit("The value specified by attr is invalid\n");
+	else if (EINVAL == status && (JOIN == opcode || DETACH == opcode))
+		error_exit("The thread is not joinable\n");
+	else if (ESRCH == status)
+		error_exit("No thread could be found corresponding to that specified"
+			" by the given thread ID, thread\n");
+	else if (EDEADLK == status)
+		error_exit("A deadlock was detected or the value of thread specifies"
+			" the calling thread\n");
 }
 
 void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
@@ -88,6 +88,6 @@ void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
 	else if (opcode == DETACH)
 		handle_thread_error(pthread_detach(*thread), opcode);
 	else
-		error_exit("Wrong opcode for thread_handle"
-			" use <CREATE> <JOIN> <DETACH>");
+		error_exit("wrong opc for the thread handle"
+			" use <CREATE JOIN DETACH>\n");
 }

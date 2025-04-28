@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 00:18:26 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/04/28 03:00:23 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:06:45 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	wait_all_threads(t_table *table)
 {
 	while (!get_bool(&table->table_mutex, &table->all_threads_ready))
 		;
-		
-	
 }
 
 bool	all_threads_are_running(t_mtx *mutex, long *threads, long philo_nbr)
@@ -28,6 +26,7 @@ bool	all_threads_are_running(t_mtx *mutex, long *threads, long philo_nbr)
 	safe_mutex_handle(mutex, LOCK);
 	if (*threads == philo_nbr)
 		res = true;
+	safe_mutex_handle(mutex, UNLOCK);
 	return (res);
 }
 
