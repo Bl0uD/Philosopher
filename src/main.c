@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 21:30:52 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/04/28 17:45:12 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/06/18 16:19:42 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 	else
 	{
 		error_exit("Wrong input:\n"
-			G"Correct id ./philo 5 800 200 200 [5]\n"RST);
+			G"Correct id ./philo 5 800 200 200 [5]"RST);
 	}
 	return (0);
 }
