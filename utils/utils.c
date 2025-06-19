@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 21:33:57 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/04/28 17:50:29 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/06/19 12:10:21 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ long	gettime(t_time_code time_code)
 	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL))
-		error_exit("Gettimeofday failed\n");
-	if (SECOND == time_code)
+		error_exit("Gettimeofday failed");
+	if (time_code == SECOND)
 		return (tv.tv_sec + (tv.tv_usec / 1e6));
-	else if (MILLISECOND == time_code)
+	else if (time_code == MILLISECOND)
 		return ((tv.tv_sec * 1e3) + (tv.tv_usec / 1e3));
-	else if (MICROSECOND == time_code)
+	else if (time_code == MICROSECOND)
 		return ((tv.tv_sec * 1e6) + tv.tv_usec);
 	else
-		error_exit("Wrong input to gettime !\n");
+		error_exit("Wrong input to gettime !");
 	return (0);
 }
 
