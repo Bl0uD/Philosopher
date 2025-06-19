@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 00:40:50 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/06/18 09:41:55 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/06/19 11:11:52 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static void	write_status_debug(t_philo_status status,
 			"\t\t\tn°"B"[ %d ]\n"RST, elapsed, philo->id,
 			philo->first_fork->fork_id);
 	else if (status == EATING && !simulation_finished(philo->table))
-		printf(W"%6ld"G" %d is eating ..."
+		printf(W"%6ld"G" %d is eating"
 			"\t\t\t"Y"[ %ld ]\n"RST, elapsed, philo->id, philo->meals_counter);
 	else if (status == SLEEPING && !simulation_finished(philo->table))
-		printf(W"%6ld"Y" %d is sleeping ...\n"RST, elapsed, philo->id);
+		printf(W"%6ld"Y" %d is sleeping\n"RST, elapsed, philo->id);
 	else if (status == THINKING && !simulation_finished(philo->table))
-		printf(W"%6ld"C" %d is thinking ...\n"RST, elapsed, philo->id);
+		printf(W"%6ld"C" %d is thinking\n"RST, elapsed, philo->id);
 	else if (status == DIED)
 		printf(RED"\t\t %6ld %d died !!!\n"RST, elapsed, philo->id);
 }
@@ -50,11 +50,11 @@ void	write_status(t_philo_status status, t_philo *philo, bool debug)
 			&& !simulation_finished(philo->table))
 			printf(W"%-6ld"RST" %d has taken a fork\n", elapsed, philo->id);
 		else if (EATING == status && !simulation_finished(philo->table))
-			printf(W"%-6ld"G" %d is eating ...\n"RST, elapsed, philo->id);
+			printf(W"%-6ld"G" %d is eating\n"RST, elapsed, philo->id);
 		else if (SLEEPING == status && !simulation_finished(philo->table))
-			printf(W"%-6ld"Y" %d is sleeping ...\n"RST, elapsed, philo->id);
+			printf(W"%-6ld"Y" %d is sleeping\n"RST, elapsed, philo->id);
 		else if (THINKING == status && !simulation_finished(philo->table))
-			printf(W"%-6ld"C" %d is thinking ...\n"RST, elapsed, philo->id);
+			printf(W"%-6ld"C" %d is thinking\n"RST, elapsed, philo->id);
 		else if (DIED == status)
 			printf(RED"%-6ld %d died\n"RST, elapsed, philo->id);
 	}
