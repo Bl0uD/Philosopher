@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 00:40:50 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/06/19 11:38:15 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/06/19 12:37:46 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@ void	write_status(t_philo_status status, t_philo *philo, bool debug)
 		write_status_debug(status, philo, elapsed);
 	else
 	{
-		if ((TAKE_FIRST_FORK == status || TAKE_SECOND_FORK == status)
+		if ((status == TAKE_FIRST_FORK || status == TAKE_SECOND_FORK)
 			&& !simulation_finished(philo->table))
 			printf(W"%-6ld"RST" %d has taken a fork\n", elapsed, philo->id);
-		else if (EATING == status && !simulation_finished(philo->table))
+		else if (status == EATING && !simulation_finished(philo->table))
 			printf(W"%-6ld"G" %d is eating\n"RST, elapsed, philo->id);
-		else if (SLEEPING == status && !simulation_finished(philo->table))
+		else if (status == SLEEPING && !simulation_finished(philo->table))
 			printf(W"%-6ld"Y" %d is sleeping\n"RST, elapsed, philo->id);
-		else if (THINKING == status && !simulation_finished(philo->table))
+		else if (status == THINKING && !simulation_finished(philo->table))
 			printf(W"%-6ld"C" %d is thinking\n"RST, elapsed, philo->id);
-		else if (DIED == status)
+		else if (status == DIED)
 			printf(RED"%-6ld %d died\n"RST, elapsed, philo->id);
 	}
 	safe_mutex_handle(&philo->table->write_mutex, UNLOCK);

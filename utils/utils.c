@@ -6,7 +6,7 @@
 /*   By: jdupuis <jdupuis@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 21:33:57 by jdupuis           #+#    #+#             */
-/*   Updated: 2025/06/19 12:10:21 by jdupuis          ###   ########.fr       */
+/*   Updated: 2025/06/19 12:33:39 by jdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	precise_usleep(long usec, t_table *table)
 			usleep(rem / 2);
 		else
 		{
-			while (gettime(MICROSECOND) - start < usec)
+			while (gettime(MICROSECOND) - start < usec && !simulation_finished(table))
 				;
 		}
 	}
